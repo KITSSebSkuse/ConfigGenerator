@@ -30,6 +30,7 @@ protocol HeaderTemplate: Template {
   var integerDeclaration: String { get }
   var stringDeclaration: String { get }
   var booleanDeclaration: String { get }
+  var byteArrayDeclaration: String { get }
   var urlDeclaration: String { get }
   var customDeclaration: String { get }
 }
@@ -44,6 +45,7 @@ protocol ImplementationTemplate: Template {
   var integerImplementation: String { get }
   var stringImplementation: String { get }
   var booleanImplementation: String { get }
+  var byteArrayImplementation: String { get }
   var trueString: String { get }
   var falseString: String { get }
   var urlImplementation: String { get }
@@ -73,6 +75,7 @@ struct ObjectiveCTemplate: HeaderTemplate, ImplementationTemplate {
   var urlDeclaration: String { return "+ (NSURL *)\(variableNameToken)" }
   var customDeclaration: String { return "+ (\(customTypeToken))\(variableNameToken)" }
   var headerImportStatements: String { return "#import <Foundation/Foundation.h>\n\n" }
+  var byteArrayDeclaration: String { return "+ (NSArray <NSNumber *>*)\(variableNameToken)" }
   
   //MARK: - ImplementationTemplate
 
@@ -86,6 +89,7 @@ struct ObjectiveCTemplate: HeaderTemplate, ImplementationTemplate {
   var doubleImplementation: String { return doubleDeclaration + "\n{\n  return @\(valueToken);\n}" }
   var stringImplementation: String { return stringDeclaration + "\n{\n  return @\"\(valueToken)\";\n}" }
   var booleanImplementation: String { return booleanDeclaration + "\n{\n  return \(valueToken);\n}" }
+  var byteArrayImplementation: String { return byteArrayDeclaration + "\n{\n  return @[\(valueToken)];\n}" }
   var trueString: String { return "YES" }
   var falseString: String { return "NO" }
   var urlImplementation: String { return urlDeclaration + "\n{\n  return [NSURL URLWithString:@\"\(valueToken)\"];\n}" }
@@ -109,6 +113,7 @@ struct SwiftTemplate: ImplementationTemplate {
   var doubleImplementation: String { return "  static let \(variableNameToken): Double = \(valueToken)" }
   var stringImplementation: String { return "  static let \(variableNameToken): String = \"\(valueToken)\"" }
   var booleanImplementation: String { return "  static let \(variableNameToken): Bool = \(valueToken)" }
+  var byteArrayImplementation: String {  return "  static let \(variableNameToken): [UInt8] = [\(valueToken)]" }
   
   var trueString: String { return "true" }
   var falseString: String { return "false" }

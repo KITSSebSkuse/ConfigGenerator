@@ -125,3 +125,11 @@ You have to make the type in your plist a string, and input either a number -- e
 ```
   let retryCount: Int? = nil
 ```
+
+# Encryption
+
+`configen` supports encrypting configuration options using AES128. To enable encryption, the plist must contain a `String` field for the encryption key, with a corresponding entry in the mapping file with a data type of `EncryptionKey`. Any field that requires encryption should then have the `Encrypted` data type in the mapping file.
+
+In Swift, the encryption key will be written out as an array of `UInt8` bytes, in Objective-C it will appear as an array of `NSNumber`s. When the key is written to the config, a corresponding Initialisation Vector is generated that must be used to decrypt the content. The IV will follow the naming convention of the encryption key, but with IV appended.
+
+Encrypted values can be decrypted with any AES128 compatible library using the key and IV, or by using the simple Swift AESCrypt class provided.
