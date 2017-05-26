@@ -10,8 +10,14 @@ import Foundation
 
 class FileGenerator {
   
+  struct EncryptionConfig {
+    let key: String
+    let iv: String
+    let name: String
+  }
+    
   let optionsParser: OptionsParser
-  var encryptionConfig: (key: String, iv: String, name: String)?
+  var encryptionConfig: EncryptionConfig?
     
   init (optionsParser: OptionsParser) {
     self.optionsParser = optionsParser
@@ -73,12 +79,12 @@ class FileGenerator {
     // it changing every time the config is rebuilt.
     let iv = String(NSDictionary(dictionary: optionsParser.plistDictionary).hashValue)
     
-    encryptionConfig = (key: key, iv: iv, name: fieldKey)
+    encryptionConfig = EncryptionConfig(key: key, iv: iv, name: fieldKey)
         
     // Add the IV option
     let ivFieldName = fieldKey.appending("IV")
     optionsParser.hintsDictionary[ivFieldName] = "ByteArray"
-    optionsParser.plistDictionary[ivFieldName] = NSString(string: "BlaBlabla")
+    optionsParser.plistDictionary[ivFieldName] = NSString(string: iv)
   }
   
   func methodDeclarationForVariableName(variableName: String, type: String, template: HeaderTemplate) -> String {
