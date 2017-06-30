@@ -77,14 +77,18 @@ class FileGenerator {
     
     // Generate the IV from the current state of the plist dictionary, this prevents
     // it changing every time the config is rebuilt.
-    let iv = String(NSDictionary(dictionary: optionsParser.plistDictionary).hashValue)
-    
-    encryptionConfig = EncryptionConfig(key: key, iv: iv, name: fieldKey)
-        
-    // Add the IV option
-    let ivFieldName = fieldKey.appending("IV")
-    optionsParser.hintsDictionary[ivFieldName] = "ByteArray"
-    optionsParser.plistDictionary[ivFieldName] = NSString(string: iv)
+    do {
+        let iv = try optionsParser.plistDictionary.hashRepresentation()
+
+        encryptionConfig = EncryptionConfig(key: key, iv: iv, name: fieldKey)
+
+        // Add the IV option
+        let ivFieldName = fieldKey.appending("IV")
+        optionsParser.hintsDictionary[ivFieldName] = "ByteArray"
+        optionsParser.plistDictionary[ivFieldName] = NSString(string: iv)
+    } catch {
+        fatalError("Unable to create initialization vector from input plist dictionary")
+    }
   }
   
   func methodDeclarationForVariableName(variableName: String, type: String, template: HeaderTemplate) -> String {

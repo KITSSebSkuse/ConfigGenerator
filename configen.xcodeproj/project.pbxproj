@@ -13,6 +13,7 @@
 		91ED18E61E02A48F00475042 /* CommandLineKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91084DEB1E02A0A9004E353B /* CommandLineKit.swift */; };
 		91ED18E71E02A49200475042 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91084DED1E02A0A9004E353B /* Option.swift */; };
 		91ED18E81E02A49500475042 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91084DEE1E02A0A9004E353B /* StringExtensions.swift */; };
+		96DD94A71F063A1E00375D4E /* Dictionary+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD94A61F063A1E00375D4E /* Dictionary+MD5.swift */; };
 		B3C84A1D1ED6EC83008B0640 /* AESCrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C84A1C1ED6EC83008B0640 /* AESCrypt.swift */; };
 		EAD7A2A21BBABE83006A3921 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7A2A11BBABE83006A3921 /* main.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		91084DEC1E02A0A9004E353B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91084DED1E02A0A9004E353B /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		91084DEE1E02A0A9004E353B /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		96DD94A61F063A1E00375D4E /* Dictionary+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+MD5.swift"; sourceTree = "<group>"; };
 		B3C84A1C1ED6EC83008B0640 /* AESCrypt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AESCrypt.swift; sourceTree = "<group>"; };
 		B3C84A261ED6ED53008B0640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3C84A2B1ED6ED7D008B0640 /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				2E378F951D5B811C00E9F524 /* OptionsParser.swift */,
 				2E4A8F301D5C77AB0025C677 /* FileTemplates.swift */,
 				2E4A8F321D5CB7D60025C677 /* FileGenerator.swift */,
+				96DD94A61F063A1E00375D4E /* Dictionary+MD5.swift */,
 				B3C84A1C1ED6EC83008B0640 /* AESCrypt.swift */,
 			);
 			path = configen;
@@ -180,6 +183,7 @@
 				EAD7A2A21BBABE83006A3921 /* main.swift in Sources */,
 				2E4A8F331D5CB7D60025C677 /* FileGenerator.swift in Sources */,
 				2E378F961D5B811C00E9F524 /* OptionsParser.swift in Sources */,
+				96DD94A71F063A1E00375D4E /* Dictionary+MD5.swift in Sources */,
 				2E4A8F311D5C77AB0025C677 /* FileTemplates.swift in Sources */,
 				B3C84A1D1ED6EC83008B0640 /* AESCrypt.swift in Sources */,
 			);
