@@ -32,9 +32,9 @@ The `configen` mapping file uses a custom set of types which map to Swift types.
 
 ## Step 2: A plist for each environment
 
-Then you need to create a property list file, in which you provide values for each of the keys defined in your mapping file, above. You need to create a property list file for each required environment. For example, you may have a `test` and a `production` environment.
+Then you need to create a property list (plist) file, in which you provide values for each of the keys defined in your mapping file, above. You need to create a property list file for each required environment. For example, you may have a `test` and a `production` environment.
 
-Using the above example, the property list source code for a production environment may look as follows: 
+Using the above example, the plist source code for a production environment may look as follows: 
 
 ```
 <plist version="1.0">
@@ -55,9 +55,11 @@ Using the above example, the property list source code for a production environm
 </plist>
 ```
 
+Before proceeding to the next step, ensure that both the mapping file and plist files are placed inside your project directory. To keep things simple it might be best to place all these files in the same place, for example, in a `Config` sub-folder. You will need to reference the path to these files in step 3. 
+
 ## Step 3: An external build step for each environment
 
-Finally, you need to create a build target for each of your enviroments. This can be done be selecting File -> New -> Target and selecting 'External Build System' from the 'Cross-Platform' tab.
+Finally, you need to create a build target for each of your environments. This can be done be selecting File -> New -> Target and selecting 'External Build System' from the 'Cross-Platform' tab.
 
 In the settings of each build target point the 'Build Tool' to the location of the `configen` script that you copied to your directory earlier and invoke the arguments as follows. Note that the output directory must be created separately.
 
