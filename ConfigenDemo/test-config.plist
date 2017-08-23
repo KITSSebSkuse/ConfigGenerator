@@ -14,5 +14,14 @@
 	<string>tay663jsba9dn6d</string>
 	<key>environment</key>
 	<string>.Test</string>
+	<key>dictionary</key>
+	<dict>
+		<key>number</key>
+		<integer>1</integer>
+		<key>string</key>
+		<string>hello</string>
+		<key>bool</key>
+		<false/>
+	</dict>
 </dict>
 </plist>

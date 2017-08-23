@@ -14,5 +14,16 @@
 	<string>haf6d9fha8v56abs</string>
 	<key>environment</key>
 	<string>.Production</string>
+	<key>dictionary</key>
+	<dict>
+		<key>number</key>
+		<integer>1</integer>
+		<key>string</key>
+		<string>hello</string>
+		<key>bool</key>
+		<false/>
+		<key>double</key>
+		<real>1.5</real>
+	</dict>
 </dict>
 </plist>
