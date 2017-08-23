@@ -4,3 +4,4 @@ retryCount : Int
 adUnitPrefix : String
 analyticsKey : String
 environment : Environment
+dictionary: Dictionary

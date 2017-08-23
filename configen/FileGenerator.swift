@@ -112,6 +112,9 @@ class FileGenerator {
         
     case ("EncryptionKey"), ("ByteArray"):
         line = template.byteArrayDeclaration
+
+    case ("Dictionary"):
+        line = template.dictionaryDeclaration
         
     default:
       line = template.customDeclaration
@@ -126,7 +129,7 @@ class FileGenerator {
   
   func methodImplementationForVariableName(variableName: String, type: String, template: ImplementationTemplate) -> String {
     
-    guard var value = optionsParser.plistDictionary[variableName] else {
+    guard var value: Any = optionsParser.plistDictionary[variableName] else {
       fatalError("No configuration setting for variable name: \(variableName)")
     }
     
@@ -175,6 +178,23 @@ class FileGenerator {
             fatalError("Unable to encrypt \(variableName) with key")
         }
         value = byteArrayOutput(from: encryptedString)
+
+    case ("Dictionary"):
+        line = template.dictionaryImplementation
+        guard let dict = value as? [String: Any] else { fatalError("Expected a dictionary") }
+        let values = dict.map { (key, value) -> String in
+            let updatedValue: Any
+            switch value {
+            case is String:
+                updatedValue = "\"\(value)\""
+            case is NSNumber:
+                updatedValue = numericValue(value as! NSNumber)
+            default:
+                updatedValue = value
+            }
+            return "\"\(key)\": \(updatedValue)"
+        }
+        value = "[\(values.joined(separator: ", "))]"
         
     default:
       guard value is String else {
@@ -195,6 +215,13 @@ class FileGenerator {
     return transformedByteArray.joined(separator: ", ") as NSString
   }
     
+}
+
+func numericValue(_ number: NSNumber) -> Any {
+    if String(describing: type(of: number)) == "__NSCFBoolean" {
+        return number.boolValue
+    }
+    return number
 }
 
 extension String {
