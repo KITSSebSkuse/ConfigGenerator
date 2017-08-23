@@ -218,7 +218,7 @@ class FileGenerator {
 }
 
 func numericValue(_ number: NSNumber) -> Any {
-    if String(describing: type(of: number)) == "__NSCFBoolean" {
+    if case .charType = CFNumberGetType(number) {
         return number.boolValue
     }
     return number
