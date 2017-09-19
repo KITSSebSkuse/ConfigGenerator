@@ -182,19 +182,7 @@ class FileGenerator {
     case ("Dictionary"):
         line = template.dictionaryImplementation
         guard let dict = value as? [String: Any] else { fatalError("Expected a dictionary") }
-        let values = dict.map { (key, value) -> String in
-            let updatedValue: Any
-            switch value {
-            case is String:
-                updatedValue = "\"\(value)\""
-            case is NSNumber:
-                updatedValue = numericValue(value as! NSNumber)
-            default:
-                updatedValue = value
-            }
-            return "\"\(key)\": \(updatedValue)"
-        }
-        value = "[\(values.joined(separator: ", "))]"
+        value = dictionaryValue(dict)
         
     default:
       guard value is String else {
@@ -215,6 +203,24 @@ class FileGenerator {
     return transformedByteArray.joined(separator: ", ") as NSString
   }
     
+}
+
+func dictionaryValue( _ dict: [String: Any]) -> String {
+    let values = dict.map { (key, value) -> String in
+        let updatedValue: Any
+        switch value {
+        case is String:
+            updatedValue = "\"\(value)\""
+        case is NSNumber:
+            updatedValue = numericValue(value as! NSNumber)
+        case is [String: Any]:
+            updatedValue = dictionaryValue(value as! [String: Any])
+        default:
+            updatedValue = value
+        }
+        return "\"\(key)\": \(updatedValue)"
+    }
+    return "[\(values.joined(separator: ", "))]"
 }
 
 func numericValue(_ number: NSNumber) -> Any {
